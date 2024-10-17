@@ -17,15 +17,21 @@ __all__ = ["Cart"]
 
 
 class Cart:    
-    def __init__(self, *selections) -> None:
+    def __init__(self, selections):
         self.menu = selections
-        # self.selected: dict[str, float] | None = None
+        self.selected = dict()
 
     def __str__(self):
         return self.menu
 
-    def get_price(self):
-        item = self.menu[0]
-        return item
+    def add(self, name):
+        name = name.title()        
+        if name not in self.menu:
+            raise ValueError("Invalid item")
+        if name in self.selected:
+            self.selected[name] += self.menu[name]
+            return self.selected
         
+        self.selected[name] = self.menu[name]
+        return self.selected
     
