@@ -1,12 +1,13 @@
-def get_orders():
-    # orders = []
+from classes import Cart
 
-    # while True:
-    #     try: 
-    #         item = input("Enter item: ")
-    #         orders.append(item)
-    #     except EOFError:
-    #         print()
-    #         break
+def get_orders():    
+    cart = Cart()
 
-    return "Hello"
+    while True:
+        try: 
+            item = input("Enter item: ")
+            if cart.add(item):
+                print(cart)
+        except EOFError:
+            print()
+            break
