@@ -1,21 +1,24 @@
 from classes.Menu import Menu
+from collections import Counter
 
 __all__ = ["Cart"]
 
 class Cart(Menu):    
     def __init__(self):
-        self.picked = dict()
+        self.picked = Counter()
         self.total = 0
-
-    def __str__(self):
-        return f"Total: ${self.total}"
         
     def add(self, name):
+        name = name.strip()
         item = super().get(name)
         if item:
-            self.picked[item.name] = self.picked.get(item.name, 0) + item.price
-            self.total = sum(self.picked.values())
+            self.picked[item.name] += 1
+            self.total += item.price
             return self.total
         return None
+    
+    def clear(self):
+        self.picked.clear()
+        self.total = 0
 
     

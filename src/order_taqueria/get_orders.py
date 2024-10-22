@@ -7,7 +7,7 @@ def get_orders():
         try: 
             item = input("Enter item: ")
             if cart.add(item):
-                print(cart)
+                print(f"${cart.total}")
         except EOFError:
             print()
             break
