@@ -3,14 +3,15 @@ from collections import Counter
 
 __all__ = ["Cart"]
 
-class Cart(Menu):    
+class Cart():    
     def __init__(self):
         self.picked = Counter()
         self.total = 0
+        self.menu = Menu()
         
     def add(self, name):
         name = name.strip()
-        item = super().get(name)
+        item = self.menu.get(name)
         if item:
             self.picked[item.name] += 1
             self.total += item.price
