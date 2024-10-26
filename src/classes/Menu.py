@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List
+from csv import DictReader
 
 __all__ = ["Manu"]
 
@@ -12,17 +12,12 @@ class Item:
 
 
 class Menu:
-    items = {
-        "Baja Taco": 4.25,
-        "Burrito": 7.50,
-        "Bowl": 8.50,
-        "Nachos": 11.00,
-        "Quesadilla": 8.50,
-        "Super Burrito": 8.50,
-        "Super Quesadilla": 9.50,
-        "Taco": 3.00,
-        "Tortilla Salad": 8.00
-    }
+    items = {}
+
+    with open("src/db/menu.csv") as file:
+        reader = DictReader(file)
+        for row in reader:
+            items[row["name"]] = float(row["price"])
     
     @classmethod
     def get_price(cls, name):
