@@ -1,4 +1,4 @@
-from src.classes import Menu, Item
+from src.classes import Menu, Item, MenuState
 
 class TestMenuGet:
     def test_invalid(self):
@@ -23,3 +23,14 @@ class TestMenuGetPrice:
 
     def test_lower(self):
         assert Menu.get_price("bowl") == 8.50
+
+    
+    class TestMenuState:
+        def test_get(self):
+            assert MenuState().get() is not None
+
+        def test_instance(self):
+            state1 = MenuState()
+            state2 = MenuState()
+
+            assert state1 == state2
